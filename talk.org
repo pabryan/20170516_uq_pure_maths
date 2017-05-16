@@ -1,0 +1,341 @@
+#+TITLE: Harnack Inequalities and Ancient Solutions
+#+BEAMER_HEADER: \subtitle{UQ Pure Maths Seminar\\Joint with Mohammad Ivaki and Julian Scheuer}
+#+AUTHOR: Paul Bryan
+#+EMAIL: pabryan@gmail.com
+#+DATE: May 16 2017
+
+#+SETUPFILE: ~/.emacs.d/org-templates/bibliography.org
+
+#+OPTIONS: H:2 toc:t
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [presentation]
+#+BEAMER_THEME: Boadilla
+#+LaTeX_HEADER: \AtBeginSection[]{\begin{frame}\frametitle{Table of Contents}\tableofcontents[currentsection]\end{frame}}
+
+#+LaTeX_HEADER: \input{local_definitions}
+
+* Hypersurface Flows
+** Hypersurface Flows
+- \((N^{n+1}, \bar{g})\) = Riemannian or Lorentzian Manifold.
+- \(M^n\) = compact manifold (except in Minkowski space - more later)\pause
+- \(M_t = X_t(M)\) is smooth family of embedded hypersurfaces where \(X_t : M \to N\) satisfies
+  \[
+  \partial_t X_t = -F(\mathcal{W}_t) \nu_t
+  \]
+  \pause
+  - \(\mathcal{W}_t\) = Weingarten extrinsic curvature, \(\nu_t\) = Unit Normal.
+  - \(F\) = /curvature function/ = smooth, symmetric function of principal curvatures (geometric flow), increasing in each argument (parabolic).\pause
+- Assumption: \(M_t\) is /spacelike/: induced metric \(g_t = X_t^{\ast} \bar{g} > 0\). \pause
+- Assumption: strict convexity: 
+  \[
+  h(X, X) := g(\mathcal{W}(X), X) > 0 \quad \forall X \ne 0 \in TM \Leftrightarrow \kappa_i > 0.
+  \]\pause
+- Assumption: \(\abs{F} > 0\) for \(\kappa_i > 0\).
+** Harnack Inequality
+- The flow \(X_t\) is fully-nonlinear
+  - Compare Scalar Monge-Ampere. Harnack for /linearised/ equation! \pause
+- Why do we get Harnack for fully non-linear curvature flows? \pause
+- The /speed function/ \(v(x, t) = \bar{g}(\partial_t X, \nu) = -F(\mathcal{W}(x, t)\) satisfies the equation
+  \[
+  \partial_t v = \Box_F v + \cdots
+  \]
+  where \(\Box_F\) is the /linearised operator/ \(\Box_F v = dF(\nabla^2 v) = \dot{F}^{ij} \nabla^2_{ij} v\). \pause
+
+\begin{theorem}
+\[
+\partial_t F - \abs{\nabla F}_h^2 + \frac{p}{p+1} \frac{F}{t} \geq 0.
+\]
+\end{theorem}
+
+** Examples of Hypersurface Flows
+- Mean Curvature Flow: \(F(\mathcal{W}) = H = \Tr(\mathcal{W}) = \kappa_1 + \cdots + \kappa_n\).
+- Inverse Mean Curvature Flow: \(F(\mathcal{W}) = -H^{-1} = - \Tr(\mathcal{W})^{-1} = -\frac{1}{\kappa_1 + \cdots + \kappa_n}\).
+- Gauss Curvature Flow: \(F(\mathcal{W}) = K = \Tr(\wedge^n \mathcal{W}) = \kappa_1 \cdots \kappa_n\). \pause
+- Elementary Symmmetric Polynomials: \(F(\mathcal{W}) = \sigma_k = \Tr(\wedge^k \mathcal{W}) = \sum_{i_1 < \cdots < i_k} \kappa_{i_1} \cdots \kappa_{i_k}\).
+- Power sums: \(F(\mathcal{W}) = P_k = \Tr(\mathcal{W}^k) = \kappa_1^k + \cdots + \kappa_n^k\). \pause
+- New functions from old
+  - Take powers: \(H^p\), \(K^p\), \(\sigma_k^p\), etc.
+  - Symmetric polynomials in \(\kappa_i\) = Polynomials in \(\sigma_k\) = Polynomials in \(P_k\)
+  - Transcendental functions, e.g. \(\exp(H)\)
+** Examples of Hypersurface Flow
+- Any smooth function \(f\), increasing in each argument: \(F(\mathcal{W}) = f(\sigma_1, \cdots, \sigma_n)\)
+- Such functions give parabolic flows. \pause
+- For Harnack inequalities (and many other results!) need to assume either
+  - \(f\) is convex,
+  - \(f\) is concave,
+  - \(f\) is inverse concave (i.e. \(\mathcal{W} \mapsto 1/f(\mathcal{W}^{-1})\) is concave) or inverse convex.
+  - \(f = \operatorname{sgn}(p) f_1^p\) where \(f_1\) is \(1\)-homogeneous.
+   \pause
+- Remark from classical invariant theory:
+  - A theorem of Weyl says any polynomial function of \(\mathcal{W}\) invariant under change of coordinates must be a polynomial in \(\sigma_k\). Trace is the only invariant, linear polynomial, etc.
+  - Approximating smooth \(F\) by polynomials \(\Rightarrow\) only invariant smooth functions are of the form \(f(\sigma_1, \cdots, \sigma_n)\).
+* Review of Harnack Inequalities and Ancient Solutions
+** Li-Yau-Hamilton and Moser Harnack Inequality
+- Li-Yau-Hamilton (Andrews in this context!): \pause
+  - The speed \(F\) evolves by a scalar parabolic equation.\pause
+  - Let \(u = \partial_t \ln \abs{F} = \tfrac{\partial_t F}{F}\).
+    \[
+    \partial_t u - \abs{\nabla u}_h^2 \geq -\frac{p}{p+1} \frac{1}{t}
+    \]\pause
+  - \(\abs{\nabla u}_h^2 = h(\grad_h u, \grad_h u)\) where \(du(X) = h(\grad_h u, X)\) defines the gradient of \(u\) w.r.t. \(h\). \pause
+- Moser:
+  \[
+  F(x_1, t_1) \leq C(x_1, x_2, t_1, t_2) F(x_2, t_2)
+  \]
+  with \(0 < t_1 < t_2\). \pause
+- Li-Yau-Hamilton \(\Leftrightarrow\) Moser by integrating over space-time paths (sharpest C):
+  \[
+  C = \left(\frac{t_2}{t_1}\right)^{\tfrac{p}{p+1}} e^{\Delta/4}
+  \]
+  - \(\Delta = \inf_{\gamma} \int_{t_1}^{t_2} \tfrac{1}{F} h(\gamma', \gamma') dt\) for \(F > 0\) and \(\gamma(t_1) = x_1, \gamma(t_2) = x_2\).
+  - Replace \(\inf\) by \(\sup\) for \(F < 0\).
+** Why Care About Harnack inequalities?
+- Regularity: e.g. Moser proved divergence form + measurable coefficients \(\Rightarrow\) \holder{} continuity. \pause
+- Bootstrapping: \(C^{k,\beta}\) coefficients \(\Rightarrow\) \(C^{k+1,\alpha}\) continuity.\pause
+- Singularity analysis: Blow ups of singularities are solitons (sharp case in the Harnack!) \pause
+** Why Care About Harnack Inequalities
+- Uniform parabolicity: e.g. GCF: \(F = K\).\pause
+  - \(\kappa_i = 0\) for some \(i\) \(\Rightarrow F = 0, dF = 0 \Rightarrow\) the flow is degenerate parabolic.\pause
+  - Upper bounds for the speed are easiest: \(K \leq K_0(t)\) (Tso)\pause.
+  - Moser Harnack: \(0 \leq \sup_{x\in M} F(x, t_1) \leq C \inf_{x\in M} F(x, t_2)\)
+  - Therefore, if \(\kappa_i = 0\) at \(t = t_2\), then \(F \equiv 0\), \(t \leq t_2\) (provided \(C\) bounded!) (compare strong maximum principle)\pause
+  - Li-Yau-Hamilton \(\Rightarrow\) convexity is preserved while the flow is smooth:
+    \[
+    t^{-p/(p+1)} \partial_t (t^{p/(p+1)}F) = \partial_t F + \frac{p}{p+1} \frac{1}{t} F \geq \frac{1}{F} \abs{\nabla F}_h^2 \geq 0.
+    \]\pause
+    - Therefore \(t^{p/(p+1)}F\) is increasing and so \(F(\cdot, 0) > 0 \Rightarrow F(\cdot, t) > 0\).
+** Why Care About Ancient Solutions?
+- Ancient solutions exist for \(t \in (-\infty, T)\).\pause
+- Since parabolic equations are smoothing forwards in time, they get worse backwards in time!
+- Only very special solutions extend back to \(-\infty\) and may reflect symmetries of the flow and lend intuition. \pause
+- Blow-ups of singularities produce ancient solutions:
+  - \(\sup_{x\in M} \|A(x, t)\|^2 \to \infty\) as \(t \to T\):\pause
+  - For \(\lambda_k \to \infty\):
+  \[
+  \sqrt{\lambda_k} g(T + \frac{t}{\sqrt{\lambda_k}}) \quad t \in (-\sqrt{\lambda_k} T, 0)
+  \]
+  converges to an ancient solution as \(k \to \infty\). \pause
+  - Type II + Harnack inequality \(\Rightarrow\) the ancient solution is a translating soliton.
+  
+** Heat Equation Harnack
+- \(f : M \times [0, T) \to \RR\), \(M\) compact \(\ric > 0\).
+\[
+\partial_t f = \Delta f, \quad f > 0
+\]\pause
+- Let \(u = \ln f\).
+- \(f(x_1, t_1) \leq C f(x_2, t_2)\) iff \(u (x_2, t_2) -  u(x_1, t_1) \geq -\ln C\) \pause
+  #+BEGIN_latex
+  \[
+  \begin{split}
+  u(x_2, t_2) - u(x_1, t_1) &= \int_{t_1}^{t_2} \dd{t} \left[u(\gamma(t), t)\right] dt \\
+  &= \int_{t_1}^{t_2} \partial_t u + du(\gamma') dt
+  \end{split}
+  \]
+  #+END_latex
+  where \(\gamma(t_1) = x_1\) and \(\gamma(t_2) = x_2\).
+** Heat Equation Harnack
+- Sharpest Harnack - estimate the integrand:
+  \[
+  \partial_t u + du (\gamma') \geq \partial_t u - |\grad u|^2 - \frac{1}{4} |\gamma'|^2
+  \]\pause
+- Equality if and only if \(\gamma' = -2 \grad u\) by polarisation Cauchy-Schwarz:
+  #+BEGIN_latex
+  \[
+  \begin{split}
+  0 &\leq g(\grad u + \tfrac{1}{2} \gamma', \grad u + \tfrac{1}{2} \gamma') \\
+  &= g(\grad u, \grad u) + \frac{1}{4} g(\gamma', \gamma') + du (\gamma')
+  \end{split}
+  \]
+  #+END_latex
+  \pause
+- IDEA: Reparametrise to track steepest descent.
+  \[
+  \tilde{u}(x, t) = u(\varphi_t(x), t), \quad \partial_t \varphi_t = - \grad u(\varphi_t)
+  \]\pause
+- Li-Yau Harnack
+  \[
+  \partial_t \tilde{u} \geq -\frac{n}{2} \frac{1}{t}
+  \]
+** Proving Li-Yau
+With reparametrisation:
+- Let \(\tilde{Q} = \partial_t \tilde{u} = \Delta_{g_t} \tilde{u}\)
+- Show
+  \[
+  \partial_t \tilde{Q} \geq \Delta_{g_t} \tilde{Q} + g_t(\nabla \tilde{Q}, \nabla \tilde{u}) + \tfrac{2}{n} \tilde{Q}^2
+  \]
+  where now \(g_t = \varphi_t^{\ast} g\) is time-dependent. \pause
+- Maximum principle completes the proof. \pause
+- Note to compute \((\partial_t - \Delta_{g_t}) \tilde{Q}\) need to compute \([\partial_t, \Delta_{g_t}]\). \pause
+Without reparametrisation:
+- Let \(Q = \partial_t u - |\nabla u|^2 = \Delta Q\). \pause
+- Show
+  \[
+  \partial_t Q \geq \Delta Q + g (\nabla Q, \nabla \tilde{u}) + \tfrac{2}{n} Q^2
+  \]\pause
+- This time \([\partial_t, \nabla] = 0\) but need to use Bochner formula for \(\Delta |\nabla u|^2\)
+* Harnack Inequalities for Hypersurface Flows
+** Reparametrisation
+- Same idea of tracking steepest descent works for hypersurface flows: \pause
+  \(\tilde{X}(x, t) = X(\varphi_t(x), t), \quad \partial_t \varphi_t = - \grad_h F (\varphi_t)\).
+  \(\partial_t \tilde{X} = -F(\tilde{W}) \tilde{\nu} - \grad_{\tilde{h}} F(\tilde{W})\). \pause
+  - The speed \(\xi = -F(\tilde{W}) \tilde{\nu} - \grad_{\tilde{h}} F(\tilde{W})\) is a /transverse vector field/.\pause
+  - Flow is diffeomorphism invariant - reparametrisation is a choice of Gauge! \pause
+- Geometric Properties:
+  - \(\partial_t \nu = 0\) \pause
+  - \(\nabla_t g = 0\) where 
+    \[
+    \nabla_t Z = \bar{\nabla}_{\partial_t \tilde{X}} Z = \bar{\nabla}_Z \xi = -\mathcal{A} (Z)
+    \]
+    is the /affine shape operator/ \(\mathcal{A}: TM \to TM\).
+  - Here \(\bar{\nabla}\) is the ambient Levi-Civita connection. \pause
+- \(\partial_t \nu = 0\) used by Chow to study GCF solitons. \pause
+- Andrews worked with the Gauss map parametrisation in Eulidean space:
+  - Fixed normal and fixed metric.
+  - Tremendous simplification of the long calculations of Hamilton and Chow!
+** Solitons
+- \(X(x, t) = \lambda(t) X_0(x)\) with \(N = \RR^{n+1}\).
+- Solves the curvature flow provided \(\ip{\partial_t X}{\nu} = -F(\mathcal{W})\).\pause
+- Then \(\partial_t X = -F\nu - \grad_h F\)
+  - Solitons evolve exactly by the reparametrisation! \pause
+- Question: In the reparametrisation, why do we use \(\grad_h F\) and not say \(\grad_g F\)? \pause
+  - Answer one: The evolution of \(F\) depends on \(h\) and we expect it must play a role. Everything works out with \(\grad_h F\) but not \(\grad_g F\) (presumably!)\pause
+  - Answer two: For solitons we have equality:
+    \(Q = \partial_t \ln |F|\)
+    \[
+    \partial_t Q = \Delta Q + T \ast Q + \tfrac{p+1}{p} Q^2
+    \]\pause
+  - Answer three: The normal is static precisely under the reparametrisation.
+** Harnack Inequalities: Flat Spaces
+- Background is a flat spaceform: \(N = \RR^{n+1}, \RR^{n,1}\) or quotients thereof. \pause
+- No compact, spacelike hypersurfaces in Minkowski space \(\RR^{n,1}\).
+  - Take \(M\) co-compact via a group \(G\) of future-preserving isometries. \pause
+- Let \(X_t\) solves the /standard flow/ \(\partial_t X= -\sigma F(\mathcal{W}) \nu\)
+  - \(\sigma = +1\) in Riemannian case, \(\sigma = - 1\) in Lorentzian case.
+- \(F = \operatorname{sgn}(p) f^p\) with \(-1 < p\) and \(f\) inverse concave or \(-1 > p\) and \(f\) inverse convex. \pause
+\begin{theorem}
+\[
+\partial_t F - \abs{\nabla F}_h^2 + \frac{p}{p+1} \frac{F}{t} \geq 0.
+\]
+\end{theorem}\pause
+- New Harnack: Minkwoski space, and quotients (even of Euclidean space).
+** Anisotropic Flows
+- Can allow anisotropic factors: \(F = \psi(s) \varphi(\nu) \operatorname{sgn} (p) f^p\) \pause
+  - \(\varphi: \sphere^n \to \RR\) in Euclidean space
+  - \(\varphi: \HH^n \to \RR\) in Minkowski space invariant under \(G\)
+  - \(\psi(s)\) a function of the support function \(s = \pm \ip{x}{\nu}\) (some extra conditions required) (new apart from Ivaki-Stancu - centro-affine flows) \pause
+** With Background Curvature
+- Positively curved spaceforms (Sphere, de Sitter and quotients theroef)
+  - Need \(F = f^p\) with \(f\) convex and \(0 < p \leq 1\) (also \(0 < \kappa_i \leq 1\) in Lorentzian case) \pause
+- Locally symmetric, Einstein manifolds of non-negative sectional curvature (e.g. \(\mathbb{CP}^n\), finite quotients of compact type, irreducible symmetric spaces give non-constant sectional curvature examples).\pause
+  \begin{theorem}
+  \[
+  \partial_t H - \abs{\nabla H}_h^2 + \frac{1}{2} \frac{H}{t} - \frac{\bar{R}}{n+1} H\geq 0.
+  \]
+  \end{theorem}
+  - Bonus term: \(\bar{R}\) = scalar curvature = constant (since Einstein + locally symmetric \(\nabla \overline{Rm} \equiv 0\))
+** Proof
+- Key Properties:
+  - Time derivative is tangent:
+    \[
+     A(X) = D_t X = D_X (-f \nu - \grad_h f) = f\mathcal{W} (X) + \nabla_X \grad_h f
+    \] \pause
+  - Fixed normal: \(\nabla_t \nu = 0\)
+  - Fixed metric: \(\nabla_t g = 0\) \pause
+  - Don't need to compute \([\nabla_t, \nabla]\)!
+- Affine fundamental form
+  - \(\tilde{g}(X, Y) = \frac{1}{F} h(X, Y) = \frac{1}{F} g(\mathcal{W}(X), Y)\)
+  - \(B(X, Y) = \tilde{g}(A(X), Y)\) (not symmetric in non-flat spaces since \([A, \mathcal{W}] \ne 0\)) \pause
+  - \(\Lambda(X, Y) = \Rm(\partial_t X_t, X, \nu, Y)\)
+  - \(B(X, Y) - B(Y, X) = \frac{1}{f}\left(\Lambda(X, Y) - \Lambda(Y, X)\right)\) \pause
+  - Remember \(\partial_t X_t\) is not normal so \(\Lambda\) is not the curvature operator! \pause
+- Evolution
+  - \(\nabla_t h = B + \Lambda\)
+** Proof
+- Main Equation
+  \[
+  \partial_t u \geq \Box_{F} u + T \ast \nabla u + \frac{p+1}{p} u^2 + \text{Remainder} (dF \ast \Rm, dF \ast \nabla \Rm)
+  \]
+  where \(\Box_F u = dF(\nabla^2 u) = \dot{F}^{ij} \nabla^2_{ij} u\) \pause
+- Harnack follows by maximum principle
+  \[
+  u \geq - \frac{p}{p+1} \frac{1}{t}.
+  \]\pause
+- Note: \(u^2\) is key to to get \(1/t\) 
+  - comes from convexity/concavity and homogeneity assumptions \pause
+- Without convexity/concavity and homogeneity assumptions
+  \[
+  \partial_t u \geq \Box_{F} u + T \ast \nabla u + \text{Remainder} (dF \ast \Rm, dF \ast \nabla \Rm)
+  \]
+  - \(\inf u = \inf \tfrac{\partial_t f}{f}\) is increasing
+** Main Restrictions:
+- Remainder Non-negativty \pause
+  - In flat space, Remainder vanishes \(\Rightarrow\) Broadest Harnack \pause
+  - Non-flat needs Non-negative sectional curvature + restrictions on homogeneity/convexity of \(F\) \pause
+  - No way to control sign on \(\nabla \Rm\) so locally symmetric assumption is important. \pause
+- \(\ric \geq 0\) is not generally enough!\pause
+  - Non-normal speed complicates \(\Lambda\) \pause
+  - But for spaceforms tangential part disappears in a contraction! \pause
+  - For MCF, \(dF = \id \Rightarrow\) Contracting \(\Rm\) with \(dF\) gives background Ricci. \pause
+  - Otherwise we get contractions of background curvature with varying tangential tensor \(dF\) is effectively uncontrollable.
+* Ancient Solutions
+** Existence and (lack of) Uniqueness
+- Let \(M_0\) be a closed, unstable, minimal surface in \(N\).
+  - If \(N\) has \(\ric \geq K_0 > 0\), Pitts showed closed, minimal surfaces exist up to \(n=6\). Schoen-Yau extended it to \(n=7\).
+  - In this case, all minimal surfaces are unstable.
+- Linearise the Flow:
+  \[
+  \partial_t u = \Box u - (\ric(\nu_0) + \abs{A_0}^2) u
+  \]
+  for normal graphs over \(M_0\)
+- Note if \(u \equiv c\), then the energy \(I(u) = \int \abs{\nabla u}^2 - (\ric(\nu_0) + \abs{A_0}^2) < 0\)
+- Therefore we have negative eigenvalues. Index: \(I =\) number of negative eigenvalues.
+- Unstable manifold theorem
+  - There is an \(I\) dimensional linear-manifold of smooth, ancient solutions such that \(\lim_{t\to-\infty} M_t = M_0\) smoothly.
+- Principle eigenvalue is simple (at least for MCF): corresponding eigenspace is one-dimensional. (Harnack inequality!)
+- Corresponds to *unique* monotone motion - for all \(t_0\), \(M_{t}\) lies on one side of \(M_{t_0}\) for all \(t > t_0\).
+** Convex Ancient Solutions are Rare!
+For a convex ancient solution of MCF in locally symmetric, non-negative Einstein background
+- Bonus term in the Harnack:
+  \[
+  \partial_t H - \abs{\nabla H}_h^2 + \frac{1}{2} \frac{H}{t-t_0} - \frac{\bar{R}}{n+1} H\geq 0.
+  \]
+- Sending \(t_0 \to -\infty\)
+  \[
+  \partial_t H \geq \frac{\bar{R}}{n+1} H, \quad (\bar{R} > 0).
+  \]
+- Therefore
+  \[
+  H \leq e^{\tfrac{\bar{R}}{n+1} t} \to 0, \quad t \to -\infty
+  \]
+- For convex flows \(0 \leq \abs{A}^2 \leq H^2\).
+- Higher regularity \(\Rightarrow\) \(\abs{A}^2 \to 0\) in \(C^{\infty}\) hence \(M_t\) converges smoothly to a smooth, closed totally geodesic \(M_0\).
+- *But* \(\exists M_0\) smooth, closed totally geodesic hypersurface \(\Rightarrow N\) is a the sphere! Eg, \(\mathbb{CP}^n\) has no such hypersurfaces.
+- Therefore, no convex ancient solutions to MCF exist!
+** Degree One Homogeneity in the sphere
+- Speed \(F\) is convex, degree one homogeneous.
+  \[
+  \frac{\kappa_{\min}}{F} \leq \frac{\kappa_{\min}}{H} \leq \frac{1}{n}.
+  \]
+- Evolution (compare Bonus term in Harnack!):
+  \[
+  (\partial_t - \Box) \left(\frac{\kappa_{\min}}{F} - \frac{1}{n}\right) \geq - 2n \left(\frac{\kappa_{\min}}{F} - \frac{1}{n}\right)
+  \]
+- Max Principle (for ancient solutions):
+  \[
+  \frac{\kappa_{\min}}{F} \geq \frac{1}{n}
+  \]
+- Therefore
+  \[
+  \frac{1}{n} \leq \frac{\kappa_{\min}}{H} \leq \frac{1}{n} \Rightarrow H \equiv n \kappa_{\min}
+  \]
+- That is, \(M_t\) is closed, umbillic hypersurface \(\Rightarrow\) \(M_t\) is a sphere of latitude.
+** Arbitrary Flows in the Sphere
+- Take *any* parabolic, geometric flow of closed hypersurfaces in the sphere.
+- Assume \(M_t\) is a convex, ancient solution with \(H\) bounded on \((-\infty, -1)\).
+- Then \(M_t\) is a sphere of latitude.
+- Proof:
+  - \(H\) bound implies uniform (in time) interior sphere condition.
+  - We obtain a backwards limit \(M_0\) with interior sphere condition.
+  - do Carmo-Warner \(\Rightarrow\) \(M_0\) is either an equator or strictly contained in a hemisphere.
+  - Strictly contained in a hemisphere cannot be ancient because of latitude sphere barriers!
+  - Aleksandrov reflection shows this symmetry is preserved.
