@@ -1,4 +1,4 @@
-(setq pb/current-project "201705_mission_beach")
+(setq pb/current-project "20170516_uq_pure_maths")
 (setq pb/org-src-path  (concat "~/working/academic/seminars/" pb/current-project))
 (setq pb/org-publish-path (concat "~/publish/academic/seminars/" pb/current-project))
 
